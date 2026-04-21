@@ -1,45 +1,140 @@
 .scoreboard {
-  margin-top: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  align-content: flex-start;
+  align-content: center;
+  padding: 40px 20px;
+  min-height: 180px;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 100;
+  border-top: 4px solid #FFD700;
+  gap: 15px;
 }
 
 .podium {
-  background-color: #001699;
-  color: white;
+  background: linear-gradient(135deg, #E63946 0%, #C1121F 100%);
+  color: #FFD700;
   text-align: center;
-  font-family: Arial;
+  font-family: "Korinna-Bold";
   font-weight: bold;
-  font-size: 28px;
-  padding: 10px;
-  min-width: 200px;
-  border-radius: 5px;
+  font-size: 32px;
+  padding: 20px;
+  min-width: 220px;
+  min-height: 100px;
+  border-radius: 10px;
+  border: 3px solid #FFD700;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.podium:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.podium-score {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.podium-name {
+  font-size: 1.5rem;
+  color: #FFD700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .correct-answer,
 .incorrect-answer {
-  min-width: 65px;
-  height: 30px;
-  padding: 2px;
-  margin: 10px;
-  font-family: Arial;
+  min-width: 80px;
+  height: 35px;
+  padding: 5px;
+  margin: 10px 5px;
+  font-family: "Korinna-Bold";
   font-weight: bold;
   font-size: 18px;
-  border: 0px;
-  border-radius: 5px;
+  border: 2px solid #FFD700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .correct-answer {
-  background-color: #21942a;
+  background: linear-gradient(135deg, #21942a 0%, #1a7020 100%);
+  color: #FFD700;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.correct-answer:hover {
+  background: linear-gradient(135deg, #2ab533 0%, #21942a 100%);
+  box-shadow: 0 6px 15px rgba(33, 148, 42, 0.4);
+  transform: translateY(-2px);
+}
+
+.correct-answer:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .incorrect-answer {
-  background-color: #b53f18;
+  background: linear-gradient(135deg, #c1321f 0%, #8b2410 100%);
+  color: #FFD700;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.incorrect-answer:hover {
+  background: linear-gradient(135deg, #e63946 0%, #c1321f 100%);
+  box-shadow: 0 6px 15px rgba(193, 50, 31, 0.4);
+  transform: translateY(-2px);
+}
+
+.incorrect-answer:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.wager-box {
+  width: 80px;
+  padding: 5px;
+  margin: 5px;
+  font-size: 14px;
+  border: 2px solid #FFD700;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #C1121F;
+  font-weight: bold;
+}
+
+.wager-box:focus {
+  outline: none;
+  border-color: #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
 .stats {
   font-size: 18px;
+  color: #FFD700;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px solid #FFD700;
+}
+
+.stats div {
+  margin: 5px 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }

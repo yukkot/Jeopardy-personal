@@ -1,0 +1,221 @@
+{
+  "game": {
+    "single": [
+      {
+        "category": "Combates Cabrones",
+        "clues": [
+          {
+            "value": 100,
+            "clue": "<img src='/images/combate1.png' alt='Combate 1' style='max-width: 150px; max-height: 150px;'>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/gif/araquanid.gif' alt='araquanid' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          },
+          {
+            "value": 200,
+            "clue": "<img src='/images/combate2.png' alt='Combate 2' style='max-width: 150px; max-height: 150px;'>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/gif/shuckle.gif' alt='shuckle' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          },
+          {
+            "value": 300,
+            "clue": "<img src='/images/combate3.png' alt='Combate 3' style='max-width: 150px; max-height: 150px;'>",
+            "solution": "<div style='position: relative; display: flex; gap: 15px; align-items: center;'><img src='/gif/venusaur.gif' alt='Venasaur' style='max-width: 100px; max-height: 100px;'><img src='/gif/mega.gif' alt='mega' style='position: absolute; right: -200px; top: -100px; max-width: 20px; max-height: 20px;'></div>",
+            "html": true
+          },
+          {
+            "value": 500,
+            "clue": "<img src='/images/combate4.png' alt='Combate 4' style='max-width: 150px; max-height: 150px;'>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/gif/combate4.gif' alt='megamewtwo_y' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          },
+          {
+            "value": 1000,
+            "clue": "<div style='position: relative; display: flex; justify-content: center; align-items: center; min-height: 350px; width: 100%;'><p style='position: absolute; top: -100px; color: #FFD700; font-weight: bold; margin: 0; font-size: 16px; text-align: center; white-space: nowrap; overflow: visible;'>252+ SpA Choice Specs Beads of Ruin Chi-Yu Overheat vs. 252 HP / 0 SpD Zamazenta:</p><img src='/gif/chi-yu-nerd.gif' alt='Chi-Yu Nerd' style='max-width: 100px; max-height: 100px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/gif/ripzamazenta.gif' alt='calculao' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          }
+        ]
+      },
+      {
+        "category": "Adivina el Poke",
+        "clues": [
+          {
+            "value": 100,
+            "clue": "<img src='/images/recortado1.png' alt='Pokemon 1' style='transform: scale(4);'>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/recortadorespuesta1.png' alt='Respuesta Pokemon 1' style='transform: scale(0.75);'><img src='/gif/butherestherunner.gif' alt='butherestherunner' style='max-width: 150px; max-height: 150px; margin-left: 200px;'></div>",
+            "html": true
+          },
+          {
+            "value": 200,
+            "clue": "<img src='/images/recortado2.png' alt='Pokemon 2' style='transform: scale(3.5);'>",
+            "solution": "<img src='/images/recortadorespuesta2.png' alt='Respuesta Pokemon 2' style='transform: scale(0.75);'>",
+            "html": true
+          },
+          {
+            "value": 300,
+            "clue": "<img src='/images/recortado3.png' alt='Pokemon 3' style='transform: scale(3.5);'>",
+            "solution": "<img src='/images/recortadorespuesta3.png' alt='Respuesta Pokemon 3' style='transform: scale(0.75);'>",
+            "html": true
+          },
+          {
+            "value": 500,
+            "clue": "<img src='/images/recortado4.png' alt='Pokemon 4' style='transform: scale(3);'>",
+            "solution": "<img src='/images/recortadorespuesta4.png' alt='Respuesta Pokemon 4' style='transform: scale(0.75);'>",
+            "html": true
+          },
+          {
+            "value": 1000,
+            "clue": "<img src='/images/recortado5.png' alt='Pokemon 5' style='transform: scale(3);'>",
+            "solution": "<img src='/images/recortadorespuesta5.png' alt='Respuesta Pokemon 5' style='transform: scale(0.75);'>",
+            "html": true
+          }
+        ]
+      },
+      {
+        "category": "<video autoplay loop autplay muted><source src='/videos/Musical.mp4' type='video/mp4'></video>",
+        "html": true,
+        "clues": [
+          {
+            "value": 100,
+            "clue": "<div style='display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px;'><audio controls autoplay style='display: none;'><source src='/audios/Pokemon Black & White Music： Driftveil City Music.webm' type='audio/webm'></audio><img src='/gif/dancing1.gif' alt='dancing1' style='max-width: 150px; max-height: 150px;'></div>",
+            "solution": "<div style='position: relative; display: flex; gap: 15px; align-items: center;'><img src='/images/musica1.png' alt='Musica 1' style='max-width: 200px; max-height: 200px;'><video autoplay loop style='position: absolute; top: -225px; right: -500px; width: 400px; height: 250px;'><source src='/videos/踊るメガスターミー (ホドモエシティ)  ⧸ Mega Starmie dancing to driftveil city.mp4' type='video/mp4'></video></div>",
+            "html": true
+          },
+          {
+            "value": 200,
+            "clue": "<div style='display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px;'><audio controls autoplay style='display: none;'><source src='/audios/Title - Pokémon Ruby⧸Sapphire⧸Emerald Soundtrack.webm' type='audio/webm'></audio><img src='/gif/dancing2.gif' alt='dancing2' style='max-width: 150px; max-height: 150px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/gif/musica2.gif' alt='Musica 2' style='max-width: 200px; max-height: 200px;'></div>",
+            "html": true
+          },
+          {
+            "value": 300,
+            "clue": "<div style='display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px;'><audio controls autoplay style='display: none;'><source src='/audios/Pokémon- Mystery Dungeon Red Rescue Team- Tiny Woods- Music.webm' type='audio/webm'></audio><img src='/gif/dancing3.gif' alt='dancing3' style='max-width: 150px; max-height: 150px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/musica3.png' alt='Musica 3' style='max-width: 200px; max-height: 200px;'></div>",
+            "html": true
+          },
+          {
+            "value": 500,
+            "clue": "<div style='display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px;'><audio controls autoplay style='display: none;'><source src='/audios/Pokémon Sun & Moon -  Team Skull Leader Guzma Battle Music (HQ).webm' type='audio/webm'></audio><img src='/gif/dancing5.gif' alt='dancing4' style='max-width: 150px; max-height: 150px;'></div>",
+            "solution": "<div style='position: relative; display: flex; align-items: center; justify-content: center;'><img src='/images/musica4.png' alt='Musica 4' style='max-width: 180px; max-height: 180px;'><img src='/images/guzma.png' alt='Guzma' style='position: absolute; left: -500px; bottom: -300px; max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          },
+          {
+            "value": 1000,
+            "clue": "<div style='display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px;'><audio controls autoplay style='display: none;'><source src='/audios/Pokémon Black & White - N Final Battle Music (HQ).webm' type='audio/webm'></audio><img src='/gif/dancing6.gif' alt='dancing5' style='max-width: 150px; max-height: 150px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/musica5.png' alt='Musica 5' style='max-width: 180px; max-height: 180px;'></div>",
+            "html": true
+          }
+        ]
+      },
+      {
+        "category": "A lo largo de las gen",
+        "clues": [
+          {
+            "value": 100,
+            "clue": "Estadistica que tambien era utilizada en el calculo del golpe critico en 1ra generacion",
+            "solution": "<img src='/images/gen1.png' alt='gen1' style='max-width: 150px; max-height: 150px;'>",
+            "html": true
+          },
+          {
+            "value": 200,
+            "clue": "Primeros juegos con reloj interno",
+            "solution": "<img src='/images/gens3.png' alt='gen3' style='max-width: 150px; max-height: 150px;'>",
+            "html": true
+          },
+          {
+            "value": 300,
+            "clue": "<img src='/images/gen2.png' alt='gen2' style='max-width: 150px; max-height: 150px;'>",
+            "solution": "<img src='/images/gen2UltimaHora.png' alt='gen2XD' style='max-width: 150px; max-height: 150px;'>",
+            "html": true
+          },
+          {
+            "value": 500,
+            "clue": "<img src='/gif/gen4.gif' alt='gen4' style='max-width: 150px; max-height: 150px;'>",
+            "solution": "<img src='/images/gen4.png' alt='gen4stats' style='max-width: 150px; max-height: 150px;'>",
+            "html": true
+          },
+          {
+            "value": 1000,
+            "clue": "Menciona al menos 5 habilidad nerfeadas a lo largo de las generaciones",
+            "solution": "Alas Vendaval, Amor FIlial, Disfraz, Fuerte Afecto, Escudo Recio, Espada Indomita, Transitor, Piel Helada, Piel Feerica, Piel Celeste, Mutatipo, Libero"
+          }
+        ]
+      },
+      {
+        "category": "<img src= '/images/qmiedo.png' alt = 'qmiedo'>",
+        "html": true,
+        "clues": [
+          {
+            "value": 100,
+            "clue": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/Cofagrigus.png' alt='cofaeditao' style='max-width: 100px; max-height: 100px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/1.png' alt='solucion1' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          },
+          {
+            "value": 200,
+            "clue": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/Bewear.png' alt='beweareditao' style='max-width: 100px; max-height: 100px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/2.png' alt='solucion2' style='max-width: 100px; max-height: 100px;'></div>",
+            "html" : true
+          },
+          {
+            "value": 300,
+            "clue": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/303_f2.png' alt='mawileeditao' style='max-width: 100px; max-height: 100px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/3.png' alt='solucion3' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          },
+          {
+            "value": 500,
+            "clue": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/ChienPao.png' alt='chienpaoeditao' style='max-width: 100px; max-height: 100px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/4.png' alt='solucion4' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          },
+          {
+            "value": 1000,
+            "clue": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/Hoopa.png' alt='hoopaeditao' style='max-width: 100px; max-height: 100px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/5.png' alt='solucion5' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          }
+        ]
+      },
+      {
+        "category": "Type shit",
+        "clues": [
+          {
+            "value": 100,
+            "clue": "Primer Pokemon capaz de cambiar entre formas de si mismo",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/gif/typeShit1.gif' alt='solucion1' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          },
+          {
+            "value": 200,
+            "clue": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/gif/Boldore_N.gif' alt='boldoreN' style='max-width: 100px; max-height: 100px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/Boldore_de_N_N2B2.png' alt='solucion2' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          },
+          {
+            "value": 300,
+            "clue": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/gif/typeShit3.gif' alt='bagon' style='max-width: 100px; max-height: 100px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/images/respuestaTypeShit3.png' alt='solucion3' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          },
+          {
+            "value": 500,
+            "clue": "Probabilidad de pegar un golpe critico base",
+            "solution": "1/24 o 6,25%"
+          },
+          {
+            "value": 1000,
+            "clue": "<div style='display: flex; justify-content: center; align-items: center; gap: 160px; flex-wrap: wrap;'><img src='/images/Basculegion_hembra.png' alt='Basculegion_hembra' style='max-width: 80px; max-height: 80px;'><img src='/images/Heracross.png' alt='Heracross' style='max-width: 80px; max-height: 80px;'><img src='/images/Hippowdon.png' alt='Hippowdown' style='max-width: 80px; max-height: 80px;'><img src='/images/Relicanth_hembra.png' alt='Relicanth_hembra' style='max-width: 80px; max-height: 80px;'><img src='/images/Sneasel_hembra.png' alt='Sneasel_hembra' style='max-width: 80px; max-height: 80px;'><img src='/images/Snover_hembra.png' alt='Snover_hembra' style='max-width: 80px; max-height: 80px;'><img src='/images/Wobbuffet_hembra.png' alt='Wobbuffet_hembra' style='max-width: 80px; max-height: 80px;'></div>",
+            "solution": "<div style='display: flex; justify-content: center; align-items: center;'><img src='/gif/n.gif' alt='solucion5' style='max-width: 100px; max-height: 100px;'></div>",
+            "html": true
+          }
+        ]
+      }
+    ],
+    "final": {
+      "category": "Final Category",
+      "clue": "This is the Final Jeopardy clue.",
+      "solution": "What is the solution to the Final Jeopardy clue?"
+    }
+  }
+}

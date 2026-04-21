@@ -28,6 +28,8 @@ function App() {
     number | null
   >(null);
   const [currentClueIndex, setCurrentClueIndex] = useState<number | null>(null);
+  const [solutionVisible, setSolutionVisible] = useState(false);
+  const [usedAnswerPlayers, setUsedAnswerPlayers] = useState<Set<number>>(new Set());
 
   // Specify a game in the query string as /?game=GAME_ID loads a pre-loaded game
   useEffect(() => {
@@ -92,12 +94,12 @@ function App() {
     logEvent("Back to Board");
     setCurrentClueIndex(null);
     setCurrentCategoryIndex(null);
+    setSolutionVisible(false);
+    setUsedAnswerPlayers(new Set());
   }
 
-  function proceedToDouble() {
-    logEvent("Proceed to Double Jeopardy");
-    setNumCategoriesShown(0);
-    setRound("double");
+  function onSolutionToggle(visible: boolean) {
+    setSolutionVisible(visible);
   }
 
   function proceedToFinal() {
@@ -108,21 +110,6 @@ function App() {
   function finishGame() {
     logEvent("Finish Game");
     setRound("done");
-  }
-
-  function downloadGame() {
-    if (game === null) {
-      return;
-    }
-    const element = document.createElement("a");
-    const gameData: GameData = { game, players, round };
-    const file = new Blob([JSON.stringify(gameData, null, 4)], {
-      type: "text/plain",
-    });
-    element.href = URL.createObjectURL(file);
-    element.download = "game.json";
-    document.body.appendChild(element);
-    element.click();
   }
 
   if (game === null) {
@@ -143,52 +130,24 @@ function App() {
         />
       </div>
     );
-  } else if (round === "single" || round === "double") {
-    const board = game[round];
+  } else if (round === "single") {
+    const board = game.single;
     if (board === undefined) {
       return <div>Error: Game board not found.</div>;
     }
 
-    // See if we should be able to proceed to Double Jeopardy
-    let allowProceedToDouble = round === "single";
-    if (allowProceedToDouble) {
-      board.forEach((category) => {
-        category.clues.forEach((clue) => {
-          if (clue.chosen === undefined) {
-            allowProceedToDouble = false;
-          }
-        });
+    // See if we should be able to proceed to Final Jeopardy
+    let allowProceedToFinal = true;
+    board.forEach((category) => {
+      category.clues.forEach((clue) => {
+        if (clue.chosen === undefined) {
+          allowProceedToFinal = false;
+        }
       });
-    }
-
-    let allowProceedToFinal = round === "double";
-    if (allowProceedToFinal) {
-      board.forEach((category) => {
-        category.clues.forEach((clue) => {
-          if (clue.chosen === undefined) {
-            allowProceedToFinal = false;
-          }
-        });
-      });
-    }
-
-    // Allow games configurations to skip Double Jeopardy
-    if (allowProceedToDouble && game.double === undefined) {
-      allowProceedToDouble = false;
-      allowProceedToFinal = true;
-    }
+    });
 
     return (
       <div className="app">
-        {currentCategoryIndex === null &&
-          currentClueIndex === null &&
-          allowProceedToDouble && (
-            <div>
-              <button onClick={proceedToDouble} className="proceed-to">
-                Proceed to Double Jeopardy
-              </button>
-            </div>
-          )}
         {currentCategoryIndex === null &&
           currentClueIndex === null &&
           allowProceedToFinal && (
@@ -207,6 +166,7 @@ function App() {
           categoriesShown={numCategoriesShown}
           currentCategory={currentCategoryIndex}
           currentClue={currentClueIndex}
+          onSolutionToggle={onSolutionToggle}
         />
         <Scoreboard
           players={players}
@@ -223,10 +183,10 @@ function App() {
               true
           }
           stats={false}
+          solutionVisible={solutionVisible}
+          usedAnswerPlayers={usedAnswerPlayers}
+          setUsedAnswerPlayers={setUsedAnswerPlayers}
         />
-        <button onClick={downloadGame} className="download">
-          Download Game in Progress
-        </button>
       </div>
     );
   } else if (round === "final") {
@@ -241,9 +201,6 @@ function App() {
           wagering={true}
           stats={false}
         />
-        <button onClick={downloadGame} className="download">
-          Download Game in Progress
-        </button>
       </div>
     );
   } else if (round === "done") {
@@ -256,9 +213,6 @@ function App() {
           wagering={false}
           stats={true}
         />
-        <button onClick={downloadGame} className="download">
-          Download Game Result
-        </button>
       </div>
     );
   } else {

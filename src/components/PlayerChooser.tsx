@@ -31,15 +31,13 @@ function PlayerChooser(props: PlayerChooserProps) {
 
   return (
     <div className="player-chooser">
-      <div>
-        <h1>Players</h1>
-        <ul>
-          {players.map((player, i) => (
-            <li key={i}>{player.name}</li>
-          ))}
-        </ul>
+      <h1>Players</h1>
+      <div className="players-list">
+        {players.map((player, i) => (
+          <div key={i} className="player-card">{player.name}</div>
+        ))}
       </div>
-      <div>
+      <div className="input-section">
         <input
           value={name}
           onKeyDown={handleKeyDown}
@@ -52,11 +50,9 @@ function PlayerChooser(props: PlayerChooserProps) {
           Add Player
         </button>
       </div>
-      <div>
-        <button className="play-game-button" onClick={playGame}>
-          Play Game
-        </button>
-      </div>
+      <button className="play-game-button" onClick={playGame}>
+        Play Game
+      </button>
     </div>
   );
 }

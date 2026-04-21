@@ -13,18 +13,13 @@ export interface Player {
   incorrect: number;
 }
 
-export type RoundName = "single" | "double" | "final" | "done";
+export type RoundName = "single" | "final" | "done";
 export const ROUND_SINGLE: RoundName = "single";
-export const ROUND_DOUBLE: RoundName = "double";
 export const ROUND_FINAL: RoundName = "final";
 export const ROUND_DONE: RoundName = "done";
 
 export interface Game {
   single: GameRound;
-
-  // Configuration allows for games without Double Jeopardy
-  double: GameRound | undefined;
-
   final: FinalRound;
 }
 
@@ -32,6 +27,7 @@ export type GameRound = Category[];
 
 export interface Category {
   category: string;
+  html: boolean | undefined;
   clues: Clue[];
 }
 

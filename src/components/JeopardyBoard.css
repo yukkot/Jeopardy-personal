@@ -63,10 +63,36 @@ td {
   padding-left: 100;
 }
 
+.category-box .category img {
+  width: 100%;
+  height: 100%;
+  max-height: 550px;
+  object-fit: contain;
+}
+
+.category-box .category video {
+  width: 100%;
+  height: 100%;
+  max-height: 550px;
+  object-fit: contain;
+}
+
 td.category-title {
   font-family: "Swiss921", sans-serif;
   font-size: 28px;
   text-transform: uppercase;
+}
+
+td.category-title img {
+  width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+td.category-title video {
+  width: 100%;
+  max-height: 100px;
+  object-fit: contain;
 }
 
 td.board-clue {
@@ -92,9 +118,25 @@ td.board-clue {
   text-transform: uppercase;
   font-size: 50px;
   width: 100%;
-  min-height: 600px;
+  height: 600px;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 0;
+}
+
+.clue-display video {
+  width: 100%;
+  max-height: 550px;
+  object-fit: contain;
+}
+
+.clue-display img {
+  width: auto;
+  height: auto;
+  max-width: 600px;
+  max-height: 600px;
+  object-fit: contain;
+  transform: scale(4.5);
+  transform-origin: center;
 }
 
 .final-category {
@@ -115,6 +157,22 @@ td.board-clue {
   text-align: center;
   font-size: 28px;
   padding: 10px;
+}
+
+.clue-category-label img {
+  max-height: 60px;
+  max-width: 200px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin: 0 5px;
+}
+
+.clue-category-label video {
+  max-height: 60px;
+  max-width: 200px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin: 0 5px;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Fira+Code&display=swap");

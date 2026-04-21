@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Clue, GameRound } from "../types";
 import "./JeopardyBoard.css";
@@ -11,6 +11,7 @@ interface JeopardyBoardProps {
   chooseClue: (categoryIndex: number, clueIndex: number) => void;
   currentCategory: number | null;
   currentClue: number | null;
+  onSolutionToggle: (solutionVisible: boolean) => void;
 }
 
 function JeopardyBoard(props: JeopardyBoardProps) {
@@ -22,11 +23,12 @@ function JeopardyBoard(props: JeopardyBoardProps) {
     chooseClue,
     currentCategory,
     currentClue,
+    onSolutionToggle,
   } = props;
 
   const [solution, setSolution] = useState(false);
-  const [dailyDoubleScreenPresented, setDailyDoubleScreenPresented] =
-    useState(false);
+  const clueDisplayRef = useRef<HTMLDivElement>(null);
+  const persistentAudioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     document.addEventListener("keydown", clueKeyPress);
@@ -35,13 +37,94 @@ function JeopardyBoard(props: JeopardyBoardProps) {
     };
   });
 
+  useEffect(() => {
+    if (clueDisplayRef.current && currentCategory !== null && currentClue !== null && board[currentCategory]) {
+      const clue = board[currentCategory].clues[currentClue];
+      
+      // SOLO reproducir audio HTML para valor 100
+      if (clue.value === 100) {
+        const audios = clueDisplayRef.current.querySelectorAll('audio');
+        audios.forEach((audio) => {
+          audio.style.display = 'audio';
+          audio.volume = 0.3;
+          audio.removeEventListener('volumechange', handleVolumeChange);
+          audio.addEventListener('volumechange', handleVolumeChange);
+        });
+      } else {
+        // Para otros valores, ocultar los audios HTML
+        const audios = clueDisplayRef.current.querySelectorAll('audio');
+        audios.forEach((audio) => {
+          audio.pause();
+          audio.style.display = 'none';
+        });
+      }
+
+      // Controlar volumen de videos
+      const videos = clueDisplayRef.current.querySelectorAll('video');
+      videos.forEach((video) => {
+        video.volume = 0.3;
+        video.removeEventListener('volumechange', handleVolumeChange);
+        video.addEventListener('volumechange', handleVolumeChange);
+      });
+    }
+
+    // Controlar volumen del audio persistente
+    if (persistentAudioRef.current) {
+      persistentAudioRef.current.volume = 0.3;
+      persistentAudioRef.current.removeEventListener('volumechange', handleVolumeChange);
+      persistentAudioRef.current.addEventListener('volumechange', handleVolumeChange);
+    }
+  }, [solution, currentClue, currentCategory, board]);
+
+  const handleVolumeChange = (e: Event) => {
+    const element = e.target as HTMLMediaElement;
+    if (element.volume > 0.3) {
+      element.volume = 0.3;
+    }
+  };
+
+  useEffect(() => {
+    // Detener audio al cambiar de pista o volver al tablero
+    if (currentClue === null || currentCategory === null) {
+      if (persistentAudioRef.current) {
+        persistentAudioRef.current.pause();
+        persistentAudioRef.current.currentTime = 0;
+      }
+    } else if (currentCategory !== null && currentClue !== null && board[currentCategory]) {
+      // Extraer URL del audio del clue usando regex
+      const clue = board[currentCategory].clues[currentClue];
+      
+      // EXCLUIR valor 100
+      if (clue && clue.clue && clue.value !== 100) {
+        const audioRegex = /<source\s+src=["']([^"']+)["']\s+type=["']audio/;
+        const match = clue.clue.match(audioRegex);
+        if (match && match[1] && persistentAudioRef.current) {
+          persistentAudioRef.current.src = match[1];
+          persistentAudioRef.current.play();
+        }
+      } else if (persistentAudioRef.current) {
+        // Si es valor 100, detener el audio
+        persistentAudioRef.current.pause();
+        persistentAudioRef.current.currentTime = 0;
+      }
+    }
+  }, [currentClue, currentCategory, board]);
+
   function renderCategory(index: number) {
+    const category = board[index];
     return (
       <div onClick={categoryShown} className="category-container">
         <TransitionGroup>
           <CSSTransition key={index} timeout={1000} classNames="categorybox">
             <div className="category-box">
-              <div className="category">{board[index].category}</div>
+              {category.html === true ? (
+                <div
+                  className="category"
+                  dangerouslySetInnerHTML={{ __html: category.category }}
+                />
+              ) : (
+                <div className="category">{category.category}</div>
+              )}
             </div>
           </CSSTransition>
         </TransitionGroup>
@@ -49,32 +132,23 @@ function JeopardyBoard(props: JeopardyBoardProps) {
     );
   }
 
-  function renderClue(categoryName: string, clue: Clue, value: number) {
-    const showDailyDoubleScreen =
-      clue.dailyDouble && !dailyDoubleScreenPresented;
+  function renderClue(categoryName: string, categoryHasHtml: boolean, clue: Clue, value: number) {
     return (
       <div
-        onClick={
-          showDailyDoubleScreen
-            ? switchDDToClue
-            : solution
-            ? returnToBoard
-            : toggleSolution
-        }
+        onClick={solution ? returnToBoard : toggleSolution}
         className="clue"
       >
         <div className="clue-category-label">
-          {categoryName} - ${clue.value}
+          {categoryHasHtml ? (
+            <span dangerouslySetInnerHTML={{ __html: categoryName }} />
+          ) : (
+            categoryName
+          )}
+          {" - $"}{clue.value}
         </div>
-        <div
-          className={
-            showDailyDoubleScreen ? "clue-display daily-double" : "clue-display"
-          }
-        >
+        <div ref={clueDisplayRef} className="clue-display">
           <br />
-          {showDailyDoubleScreen ? (
-            "Daily Double"
-          ) : clue.html === true ? (
+          {clue.html === true ? (
             <div
               dangerouslySetInnerHTML={{
                 __html: solution ? clue.solution : clue.clue,
@@ -86,6 +160,11 @@ function JeopardyBoard(props: JeopardyBoardProps) {
             clue.clue
           )}
         </div>
+        <audio 
+          ref={persistentAudioRef}
+          controls 
+          style={{ display: 'none' }}
+        ></audio>
       </div>
     );
   }
@@ -94,6 +173,8 @@ function JeopardyBoard(props: JeopardyBoardProps) {
     // First check for categoriesShown
     if (
       categoriesShown < board.length &&
+      currentCategory === null &&
+      currentClue === null &&
       (event.key === " " || event.key === "Enter")
     ) {
       categoryShown();
@@ -102,33 +183,23 @@ function JeopardyBoard(props: JeopardyBoardProps) {
     if (currentCategory === null || currentClue === null) {
       return;
     }
-    const clue = board[currentCategory].clues[currentClue];
 
     if (event.key === " " || event.key === "Enter") {
-      // If we just showed the Daily Double screen, switch to the clue
-      if (clue.dailyDouble && !dailyDoubleScreenPresented) {
-        switchDDToClue();
-      } else {
-        toggleSolution();
-      }
+      toggleSolution();
     } else if (event.key === "Escape") {
       returnToBoard();
     }
   }
 
-  function switchDDToClue() {
-    setSolution(false);
-    setDailyDoubleScreenPresented(true);
-  }
-
   function returnToBoard() {
     setSolution(false);
-    setDailyDoubleScreenPresented(false);
+    onSolutionToggle(false);
     backToBoard();
   }
 
   function toggleSolution() {
     setSolution(!solution);
+    onSolutionToggle(!solution);
   }
 
   // First check for if we need to present categories
@@ -140,6 +211,7 @@ function JeopardyBoard(props: JeopardyBoardProps) {
   if (currentCategory !== null && currentClue !== null) {
     return renderClue(
       board[currentCategory].category,
+      board[currentCategory].html === true,
       board[currentCategory].clues[currentClue],
       board[currentCategory].clues[currentClue].value
     );
@@ -152,7 +224,11 @@ function JeopardyBoard(props: JeopardyBoardProps) {
           <tr>
             {board.map((category, i) => (
               <td key={i} className="category-title">
-                {category.category}
+                {category.html === true ? (
+                  <div dangerouslySetInnerHTML={{ __html: category.category }} />
+                ) : (
+                  category.category
+                )}
               </td>
             ))}
           </tr>

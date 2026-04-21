@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Player } from "../types";
 import "./Scoreboard.css";
 
@@ -15,14 +15,31 @@ interface ScoreboardProps {
   stats: boolean;
   updateScore: (i: number, clueValue: number, correct: boolean) => void;
   wagering: boolean;
+  solutionVisible?: boolean;
+  usedAnswerPlayers?: Set<number>;
+  setUsedAnswerPlayers?: (players: Set<number>) => void;
 }
 
 function Scoreboard(props: ScoreboardProps) {
-  const { currentValue, players, stats, updateScore, wagering } = props;
+  const { 
+    currentValue, 
+    players, 
+    stats, 
+    updateScore, 
+    wagering,
+    solutionVisible = false,
+    usedAnswerPlayers = new Set(),
+    setUsedAnswerPlayers = () => {}
+  } = props;
 
   const [wagers, setWagers] = useState<string[]>(() => {
     return players.map(() => "");
   });
+
+  // Reset used answer players when a new clue is selected
+  useEffect(() => {
+    setUsedAnswerPlayers(new Set());
+  }, [currentValue]);
 
   function renderPlayer(player: Player, i: number) {
     const scoreString =
@@ -47,7 +64,7 @@ function Scoreboard(props: ScoreboardProps) {
             />
           </div>
         )}
-        {currentValue !== null && clueValue !== null && (
+        {currentValue !== null && clueValue !== null && solutionVisible && !usedAnswerPlayers.has(i) && (
           <div>
             <button
               onClick={() => updateScoreboardScore(i, -clueValue, false)}
@@ -92,6 +109,10 @@ function Scoreboard(props: ScoreboardProps) {
         wagerIndex === i ? "" : existingWager
       )
     );
+    // Mark this player as having used the answer buttons
+    const newUsedPlayers = new Set(usedAnswerPlayers);
+    newUsedPlayers.add(i);
+    setUsedAnswerPlayers(newUsedPlayers);
     updateScore(i, clueValue, correct);
   }
 
